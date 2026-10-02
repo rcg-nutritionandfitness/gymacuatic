@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Acuatic | Nutrición y Fitness</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            acuatic: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-sky-500 selection:text-white">
+
+  <!-- Header & Navegación Principal -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Identidad de Marca con Logo Oficial -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('inicio')">
+        <img src="Logo acuatic.jpg" alt="Gym Acuatic Logo" class="h-12 w-auto object-contain bg-white/5 p-1 rounded-xl border border-white/10" />
+        <div class="hidden sm:block">
+          <span class="block font-black tracking-wider text-white text-base leading-none">GYM ACUATIC</span>
+          <span class="text-[10px] tracking-widest text-sky-400 font-bold uppercase">Nutrición y Fitness</span>
+        </div>
+      </div>
+
+      <!-- Menú de Navegación -->
+      <nav class="flex items-center gap-1 sm:gap-2">
+        <button onclick="switchTab('inicio')" id="tab-inicio" class="tab-btn active px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">
+          Inicio
+        </button>
+        <button onclick="switchTab('ritmos')" id="tab-ritmos" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">
+          Ritmos
+        </button>
+        <button onclick="switchTab('first')" id="tab-first" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">
+          Método FIRST
+        </button>
+        <button onclick="switchTab('rutinas')" id="tab-rutinas" class="tab-btn px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition">
+          Diseñador de Rutinas
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal de Vistas -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- ==================== VISTA 0: PÁGINA DE INICIO (HOME) ==================== -->
+    <section id="view-inicio" class="suite-view space-y-12">
+      
+      <!-- Hero de Presentación -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/40 border border-slate-800 p-8 sm:p-12 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 text-xs font-bold uppercase tracking-widest border border-sky-500/20">
+              Centro de Acondicionamiento & Salud
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+              Transforma tu disciplina en <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-200">resultados reales</span>
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              En <strong class="text-white font-bold">Gym Acuatic</strong> integramos fuerza, hipertrofia muscular, nutrición guiada y acondicionamiento cardiovascular con herramientas de cálculo y programación de rutinas de estándar profesional.
+            </p>
+            
+            <div class="pt-2 flex flex-wrap gap-3">
+              <button onclick="switchTab('rutinas')" class="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs sm:text-sm transition shadow-lg shadow-sky-600/30 flex items-center gap-2">
+                ⚡ Diseñar Mi Rutina Semanal
+              </button>
+              <button onclick="switchTab('first')" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm border border-slate-700 transition flex items-center gap-2">
+                🏃 Plan de Running FIRST
+              </button>
+            </div>
+          </div>
+
+          <!-- Presentación Visual del Logo -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative group p-6 rounded-3xl bg-slate-950/70 border border-sky-500/20 shadow-2xl">
+              <img src="Logo acuatic.jpg" alt="Gym Acuatic" class="max-h-56 sm:max-h-64 w-auto object-contain drop-shadow-[0_15px_25px_rgba(14,165,233,0.25)] transition duration-500 group-hover:scale-105" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Galería Interactiva de Instalaciones -->
+      <div class="space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <span class="text-xs font-bold text-sky-400 uppercase tracking-widest">Nuestras Instalaciones</span>
+            <h2 class="text-2xl font-black text-white mt-1">Equipamiento & Espacios de Entrenamiento</h2>
+          </div>
+          
+          <!-- Filtros de Galería -->
+          <div class="flex flex-wrap gap-2" id="galeriaFiltros">
+            <button onclick="filtrarGaleria('todo')" class="galeria-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-600 text-white transition">Todo</button>
+            <button onclick="filtrarGaleria('peso-libre')" class="galeria-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Mancuernas & Peso Libre</button>
+            <button onclick="filtrarGaleria('bancos')" class="galeria-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Bancos & Racks</button>
+            <button onclick="filtrarGaleria('maquinas')" class="galeria-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Poleas & Máquinas Guiadas</button>
+          </div>
+        </div>
+
+        <!-- Grid de Tarjetas Interactivas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="galeriaGrid">
+          
+          <!-- Foto 1: Zona de Mancuernas -->
+          <div class="galeria-item group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 cursor-pointer shadow-lg" data-categoria="peso-libre" onclick="abrirModalFoto('813177991_38890087210582364_5275246865214569913_n.jpg', 'Rack de Mancuernas & Peso Libre', 'Área de mancuernas graduadas por peso y amplios espejos para control de técnica e hipertrofia.')">
+            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950">
+              <img src="813177991_38890087210582364_5275246865214569913_n.jpg" alt="Zona de mancuernas y espejos" class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110" />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+            <div class="absolute bottom-0 inset-x-0 p-4">
+              <span class="text-[10px] font-bold text-sky-400 uppercase tracking-wider block">Zona de Mancuernas</span>
+              <h3 class="font-bold text-sm text-white">Rack de Cargas & Peso Libre</h3>
+              <p class="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition duration-300">Clic para ampliar imagen</p>
+            </div>
+          </div>
+
+          <!-- Foto 2: Racks y Bancos Multiangulares -->
+          <div class="galeria-item group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 cursor-pointer shadow-lg" data-categoria="bancos" onclick="abrirModalFoto('814908025_28859463886971892_5510468575331574014_n.jpg', 'Sala Central de Fuerza & Bancos', 'Bancos regulables, prensas inclinadas y jaulas Smith para sobrecarga progresiva segura.')">
+            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950">
+              <img src="814908025_28859463886971892_5510468575331574014_n.jpg" alt="Sala principal de fuerza y bancos" class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110" />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+            <div class="absolute bottom-0 inset-x-0 p-4">
+              <span class="text-[10px] font-bold text-sky-400 uppercase tracking-wider block">Sala Central de Fuerza</span>
+              <h3 class="font-bold text-sm text-white">Bancos Multiangulares & Racks</h3>
+              <p class="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition duration-300">Clic para ampliar imagen</p>
+            </div>
+          </div>
+
+          <!-- Foto 3: Máquinas Guiadas y Poleas -->
+          <div class="galeria-item group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 cursor-pointer shadow-lg" data-categoria="maquinas" onclick="abrirModalFoto('IMG_0764.jpg', 'Zona de Poleas & Máquinas Guiadas', 'Torres de jalón dorsal, estaciones de poleas cruzadas y maquinaria biomecánica asistida.')">
+            <div class="aspect-[4/3] w-full overflow-hidden bg-slate-950">
+              <img src="IMG_0764.jpg" alt="Área de poleas y dorsales" class="h-full w-full object-cover object-center transition duration-500 group-hover:scale-110" />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+            <div class="absolute bottom-0 inset-x-0 p-4">
+              <span class="text-[10px] font-bold text-sky-400 uppercase tracking-wider block">Biomecánica Asistida</span>
+              <h3 class="font-bold text-sm text-white">Torres de Poleas & Dorsales</h3>
+              <p class="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition duration-300">Clic para ampliar imagen</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tarjetas de Pilares -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-xl">
+            🥗
+          </div>
+          <h3 class="font-bold text-white text-base">Nutrición & Recomposición</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Planes nutricionales balanceados que complementan tu demanda metabólica, optimizando el aumento de masa magra o la reducción controlada de grasa.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-xl">
+            💪
+          </div>
+          <h3 class="font-bold text-white text-base">Fuerza & Musculación</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Estructuración precisa de series, repeticiones y tiempos de descanso bajo metodologías como hipertrofia, pliometría o fuerza máxima.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-xl">
+            ⏱️️
+          </div>
+          <h3 class="font-bold text-white text-base">Running & Resistencia</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Herramientas basadas en el método FIRST (Run Less, Run Faster) y calculadoras de ritmo para caminadoras e intervalos en pista atlética.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== VISTA 1: CALCULADORA DE RITMOS ==================== -->
+    <section id="view-ritmos" class="suite-view hidden space-y-6">
+      <div class="border-b border-slate-800 pb-4">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Calculadora & Conversor de Ritmos</h1>
+        <p class="text-slate-400 text-sm mt-1">Calcula splits progresivos, velocidades equivalentes para caminadora y conversiones km ⇄ millas.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-5">
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Distancia</label>
+            <div class="grid grid-cols-4 gap-2 mb-3">
+              <button type="button" onclick="setPresetDistancia(5)" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200">5K</button>
+              <button type="button" onclick="setPresetDistancia(10)" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200">10K</button>
+              <button type="button" onclick="setPresetDistancia(21.0975)" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200">21K</button>
+              <button type="button" onclick="setPresetDistancia(42.195)" class="px-2 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200">42K</button>
+            </div>
+            <div class="flex gap-2">
+              <input type="number" step="0.01" id="calc-distancia" value="10" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500" />
+              <select id="calc-unidad" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-sky-500">
+                <option value="km">Km</option>
+                <option value="mi">Millas</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Tiempo Objetivo</label>
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <span class="text-[10px] text-slate-500 uppercase font-semibold">Horas</span>
+                <input type="number" id="calc-horas" min="0" value="0" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-center text-sm text-white focus:outline-none focus:border-sky-500" />
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-500 uppercase font-semibold">Minutos</span>
+                <input type="number" id="calc-minutos" min="0" max="59" value="50" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-center text-sm text-white focus:outline-none focus:border-sky-500" />
+              </div>
+              <div>
+                <span class="text-[10px] text-slate-500 uppercase font-semibold">Segundos</span>
+                <input type="number" id="calc-segundos" min="0" max="59" value="0" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-center text-sm text-white focus:outline-none focus:border-sky-500" />
+              </div>
+            </div>
+          </div>
+
+          <button type="button" onclick="ejecutarCalculoRitmo()" class="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-sky-600/20 transition">
+            Calcular Ritmos y Métricas
+          </button>
+        </div>
+
+        <div class="lg:col-span-7 space-y-6">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center">
+              <span class="text-[11px] text-slate-500 font-semibold block">RITMO POR KM</span>
+              <span id="res-ritmo-km" class="text-xl font-black text-sky-400">5:00</span>
+              <span class="text-[10px] text-slate-500">min/km</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center">
+              <span class="text-[11px] text-slate-500 font-semibold block">RITMO POR MILLA</span>
+              <span id="res-ritmo-mi" class="text-xl font-black text-indigo-400">8:03</span>
+              <span class="text-[10px] text-slate-500">min/mi</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center">
+              <span class="text-[11px] text-slate-500 font-semibold block">VELOCIDAD (KM/H)</span>
+              <span id="res-vel-kmh" class="text-xl font-black text-emerald-400">12.00</span>
+              <span class="text-[10px] text-slate-500">km/h</span>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl text-center">
+              <span class="text-[11px] text-slate-500 font-semibold block">VELOCIDAD (MPH)</span>
+              <span id="res-vel-mph" class="text-xl font-black text-cyan-400">7.46</span>
+              <span class="text-[10px] text-slate-500">mph</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4">
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Tabla Progresiva de Splits</h4>
+            <div class="overflow-x-auto max-h-72 overflow-y-auto pr-1">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead class="border-b border-slate-800 text-slate-500 uppercase sticky top-0 bg-slate-900">
+                  <tr>
+                    <th class="py-2 px-3">Hito</th>
+                    <th class="py-2 px-3">Distancia</th>
+                    <th class="py-2 px-3">Tiempo Acumulado</th>
+                    <th class="py-2 px-3">Paso Promedio</th>
+                  </tr>
+                </thead>
+                <tbody id="splitsTableBody" class="divide-y divide-slate-800/60 text-slate-300">
+                  <!-- Inyectado por JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 2: MÉTODO FIRST ==================== -->
+    <section id="view-first" class="suite-view hidden space-y-6">
+      <div class="border-b border-slate-800 pb-4">
+        <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 text-xs font-semibold mb-2">
+          Run Less, Run Faster (Furman Institute)
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Planeador de Running FIRST</h1>
+        <p class="text-slate-400 text-sm mt-1">Estructurado en 3 entrenamientos de calidad (Pista, Tempo y Tirada Larga) y 2 de Cross-Training cruzado.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-900 border border-slate-800 p-5 rounded-2xl">
+        <div>
+          <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Distancia Objetivo</label>
+          <select id="first-objetivo" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200">
+            <option value="5k">5K (6 Semanas)</option>
+            <option value="10k" selected>10K (8 Semanas)</option>
+            <option value="21k">Medio Maratón 21K (12 Semanas)</option>
+            <option value="42k">Maratón 42K (16 Semanas)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Marca de Referencia (5K actual)</label>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="number" id="first-ref-min" placeholder="Min" value="25" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-center text-sm text-white" />
+            <input type="number" id="first-ref-seg" placeholder="Seg" value="00" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-center text-sm text-white" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Disciplina Cross-Training (XT)</label>
+          <select id="first-xt" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200">
+            <option value="Ciclismo / Spinning">Bicicleta / Spinning</option>
+            <option value="Natación">Natación aeróbica</option>
+            <option value="Remo ergómetro">Remo ergómetro</option>
+            <option value="Elíptica">Elíptica controlada</option>
+          </select>
+        </div>
+        <div class="flex items-end">
+          <button type="button" onclick="generarPlanFirst()" class="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-sky-600/20 transition">
+            Generar Calendario
+          </button>
+        </div>
+      </div>
+
+      <div id="first-paces-container" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Inyectado por JS -->
+      </div>
+
+      <div id="first-plan-container" class="space-y-4">
+        <!-- Inyectado por JS -->
+      </div>
+
+<!-- Barra de Acciones del Plan FIRST -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-900/60 border border-slate-800 p-4 rounded-2xl">
+        <div class="text-xs text-slate-400">
+          Programa: <span id="first-info-meta" class="text-white font-semibold">10K (8 Semanas)</span> | 3 días running + 2 días cross-training
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <button type="button" onclick="copiarPlanFirstTexto()" class="flex-1 sm:flex-none px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
+            📋 Copiar Plan
+          </button>
+          <button type="button" onclick="prepararEImprimirPlanFirst()" class="flex-1 sm:flex-none px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-sky-600/20 transition flex items-center justify-center gap-1.5">
+            🖨 Imprimir Calendario FIRST
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VISTA 3: DISEÑADOR DE RUTINAS ==================== -->
+    <section id="view-rutinas" class="suite-view hidden space-y-8">
+      <div class="border-b border-slate-800 pb-4">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Diseñador Personal de Rutinas</h1>
+        <p class="text-slate-400 text-sm mt-1">Configura tu método de estímulo, programa tus descansos semanales y personaliza cada serie y repetición.</p>
+      </div>
+
+      <!-- PASO 1: Metodología -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-[10px] flex items-center justify-center font-bold text-white">1</span>
+            Método de Entrenamiento
+          </h3>
+          <span class="text-xs text-slate-500">Adapta el volumen, rangos e intervalos automáticamente</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="metodosGrid">
+          <!-- Inyectado por JS -->
+        </div>
+      </div>
+
+      <!-- PASO 2: Distribución Semanal -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-sky-600 text-[10px] flex items-center justify-center font-bold text-white">2</span>
+            Organización Semanal (Entreno vs Descanso)
+          </h3>
+          <span class="text-xs text-slate-500">Haz clic en el indicador de estado para alternar el día</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2.5" id="semanaSelector">
+          <!-- Inyectado por JS -->
+        </div>
+      </div>
+
+      <!-- PASO 3: Catálogo y Tablero -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Catálogo de Ejercicios -->
+        <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider">Catálogo Anatómico</h4>
+            <span id="catalogoContador" class="text-xs font-semibold text-sky-400">0 disponibles</span>
+          </div>
+
+          <!-- Filtros de Grupo Muscular -->
+          <div class="flex flex-wrap gap-1.5" id="filtrosMusculares">
+            <button onclick="filtrarGrupo('todos')" class="filtro-btn active px-3 py-1 rounded-lg text-xs font-medium bg-sky-600 text-white">Todos</button>
+            <button onclick="filtrarGrupo('pecho')" class="filtro-btn px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Pecho</button>
+            <button onclick="filtrarGrupo('espalda')" class="filtro-btn px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Espalda</button>
+            <button onclick="filtrarGrupo('piernas')" class="filtro-btn px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Piernas</button>
+            <button onclick="filtrarGrupo('hombros')" class="filtro-btn px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Hombros</button>
+            <button onclick="filtrarGrupo('brazos')" class="filtro-btn px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Brazos</button>
+            <button onclick="filtrarGrupo('core')" class="filtro-btn px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700">Core</button>
+          </div>
+
+          <!-- Buscador -->
+          <input 
+            type="text" 
+            id="busquedaEjercicio" 
+            placeholder="Buscar por nombre, implemento o región..." 
+            class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-500" 
+            oninput="renderCatalogo()" 
+          />
+
+          <!-- Lista scrolleable de ejercicios -->
+          <div id="listaEjercicios" class="space-y-2 max-h-[460px] overflow-y-auto pr-1">
+            <!-- Inyectado por JS -->
+          </div>
+        </div>
+
+        <!-- Panel del Día en Edición -->
+        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 id="diaActualTitulo" class="text-lg font-black text-white">Lunes</h3>
+                <span id="diaActualBadge" class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Día de Entrenamiento</span>
+              </div>
+              <input 
+                type="text" 
+                id="nombreSesion" 
+                placeholder="Nombre de la sesión (ej. Torso Pesado)" 
+                class="mt-1 bg-transparent border-b border-slate-700 text-xs text-slate-300 focus:border-sky-400 focus:outline-none w-64"
+                onchange="actualizarNombreSesion(this.value)"
+              />
+            </div>
+            <button onclick="limpiarDiaActual()" class="text-xs text-rose-400 hover:bg-rose-500/10 px-3 py-1.5 rounded-lg border border-rose-500/20 transition">
+              Vaciar Día
+            </button>
+          </div>
+
+          <!-- Contenedor dinámico de ejercicios del día -->
+          <div id="contenedorEjerciciosDia" class="space-y-3 min-h-[350px]">
+            <!-- Inyectado por JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barra de Exportación Inferior -->
+      <div class="border-t border-slate-800 pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div id="resumenVolumen" class="text-xs text-slate-400 font-medium">0 sesiones activas | 0 ejercicios programados</div>
+        <div class="flex items-center gap-3">
+          <button onclick="copiarRutinaTexto()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-2">
+            📋 Copiar Resumen
+          </button>
+          <button onclick="prepararEImprimirRutina()" class="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-sky-600/20 transition flex items-center gap-2">
+            🖨 Imprimir / Guardar PDF
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DESCARGA DE RESPONSABILIDADES (WEB) ==================== -->
+    <section class="mt-12 border-t border-slate-800/80 pt-8">
+      <div class="rounded-2xl bg-slate-900/60 border border-amber-500/30 p-5 sm:p-6 text-slate-300 space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-base font-bold shrink-0">
+            ⚠️
+          </div>
+          <h4 class="text-sm sm:text-base font-black uppercase tracking-wider text-amber-300">
+            Descargo de Responsabilidad Médica y Deportiva
+          </h4>
+        </div>
+        
+        <p class="text-xs sm:text-sm leading-relaxed text-slate-300">
+          Las herramientas, planes de running basados en el método FIRST, calculadoras de ritmo y generadores de rutinas de fuerza provistos por <strong>Gym Acuatic (Nutrición y Fitness)</strong> son recursos informativos y de orientación física general[cite: 1]. No constituyen ni reemplazan una valoración médica, diagnóstico ni prescripción clínica individualizada.
+        </p>
+
+        <ul class="text-xs space-y-1.5 text-slate-400 list-disc list-inside">
+          <li>Consulta con un médico o especialista de la salud antes de iniciar cualquier programa de ejercicio de alta intensidad o restricción calórica, especialmente si presentas antecedentes cardiovasculares, metabólicos o lesiones articulares.</li>
+          <li>La ejecución de los ejercicios con pesos libres, barras o máquinas debe realizarse priorizando la técnica biomecánica correcta y bajo la supervisión de un instructor calificado[cite: 2, 3, 4].</li>
+          <li>El usuario asume voluntariamente la totalidad del riesgo asociado a la práctica física y exime a Gym Acuatic de cualquier responsabilidad por lesiones derivadas del mal uso del equipamiento o la sobrecarga desmedida.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODAL / LIGHTBOX PARA FOTOS ==================== -->
+  <div id="fotoModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="cerrarModalFoto()">
+    <div class="relative max-w-4xl w-full bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <button onclick="cerrarModalFoto()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-950/80 text-white flex items-center justify-center border border-white/20 hover:bg-rose-600 transition">
+        ✕
+      </button>
+      <div class="max-h-[70vh] bg-black flex items-center justify-center overflow-hidden">
+        <img id="modalImg" src="" alt="Instalación Gym Acuatic" class="w-full h-full object-contain" />
+      </div>
+      <div class="p-6 bg-slate-900">
+        <h3 id="modalTitulo" class="text-lg font-black text-white">Instalaciones Gym Acuatic</h3>
+        <p id="modalDesc" class="text-xs text-slate-400 mt-1">Detalles biomecánicos y equipamiento disponible.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PLANTILLA EXCLUSIVA PARA IMPRESIÓN / PDF ==================== -->
+  <div id="printSheet" class="hidden print:block p-8 bg-white text-black font-sans">
+    <div class="flex justify-between items-start border-b-2 border-black pb-4 mb-5">
+      <div>
+        <h1 class="text-2xl font-black tracking-tight uppercase">GYM ACUATIC: NUTRICIÓN Y FITNESS</h1>
+        <p class="text-xs text-gray-600 font-bold tracking-wider">FICHA OFICIAL DE PRESCRIPCIÓN & PROGRESIÓN</p>
+      </div>
+      <div class="text-right text-xs space-y-1">
+        <p><span class="font-bold">Fecha:</span> <span id="printDate"></span></p>
+        <p><span class="font-bold">Método:</span> <span id="printMetodoNombre" class="font-semibold text-gray-800"></span></p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 border border-gray-300 p-3 rounded-lg text-xs mb-6 bg-gray-50">
+      <div><span class="font-bold text-gray-500">SOCIO / ATLETA:</span> ______________________</div>
+      <div><span class="font-bold text-gray-500">OBJETIVO:</span> <span id="printMetodoSub"></span></div>
+      <div><span class="font-bold text-gray-500">FRECUENCIA:</span> <span id="printFrecuencia"></span></div>
+    </div>
+
+    <div id="printTablasDias" class="space-y-6">
+      <!-- Inyectado por JS -->
+    </div>
+
+    <!-- Pie de página y Descarga Legal en PDF -->
+    <div class="mt-6 pt-3 border-t border-gray-400 space-y-3 text-[9px] text-gray-600">
+      <div class="p-2 border border-gray-300 rounded bg-gray-50">
+        <p class="font-bold text-gray-800 uppercase tracking-tight mb-0.5">Cláusula de Responsabilidad del Socio / Atleta:</p>
+        <p>
+          Este documento es una guía técnica de entrenamiento prescrita según la metodología de Gym Acuatic[cite: 1]. El socio declara encontrarse en condiciones físicas y de salud aptas para la actividad física y asume la responsabilidad de suspender el entrenamiento ante cualquier síntoma de dolor agudo, mareo o malestar. El uso indebido de cargas o ejecución sin técnica exime al centro y a sus instructores de responsabilidad por lesiones físicas[cite: 2, 3, 4].
+        </p>
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <p>Firma del Socio: _________________________________</p>
+        <p>VoBo del Instructor: _____________________________</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts Modularizados -->
+  <script src="js/calculator.js"></script>
+  <script src="js/firstPlan.js"></script>
+  <script src="js/routineBuilder.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
